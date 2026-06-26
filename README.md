@@ -44,6 +44,7 @@ fraud-detection-api/
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+python scripts/generate_dataset.py
 python scripts/train_model.py
 uvicorn app.main:app --reload
 ```
@@ -99,6 +100,15 @@ streamlit run dashboard/streamlit_app.py
 pytest
 ```
 
+## Data Exploration
+
+Generate a larger synthetic transaction dataset and summarize the main fraud patterns:
+
+```bash
+python scripts/generate_dataset.py
+python scripts/explore_data.py
+```
+
 ## Docker
 
 ```bash
@@ -119,4 +129,3 @@ flowchart LR
 ## CV Bullet
 
 Built a fraud detection API using FastAPI and scikit-learn to classify payment transactions in real time, with model inference, prediction logging, and a dashboard for risk monitoring.
-
