@@ -6,7 +6,8 @@ import pandas as pd
 
 DATA_PATH = Path("data/transactions.csv")
 RANDOM_SEED = 42
-ROW_COUNT = 5000
+ROW_COUNT = 30000
+RISK_SHARPNESS = 1.6
 
 
 def sigmoid(value: np.ndarray) -> np.ndarray:
@@ -36,9 +37,8 @@ def main() -> None:
     high_amount = amount > 450
     new_customer = customer_age_days < 45
 
-    risk_score = (
-        -4.2
-        + 1.25 * high_amount
+    risk_score = -4.2 + RISK_SHARPNESS * (
+        1.25 * high_amount
         + 0.95 * unusual_hour
         + 1.15 * is_foreign_transaction
         + 0.9 * is_new_merchant
